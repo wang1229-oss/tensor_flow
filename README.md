@@ -155,8 +155,38 @@ python3 generate_tfrecord.py --csv_input=data/test_labels.csv --output_path=test
 训练之前，我们要做的最后一件事是create a label map and a training configuration file.
 
 ---
+## 六、 Creating a label map
 
-## 六、Creating a label map
+The label map maps : an id to a name.
+I have already created a label map file for my training. It looks like this:
+
+編輯: object-detection.pbtxt
+```text
+item{
+  id:1
+  name: "apple"
+｝
+```
+如果您使用多个类，请遵循此模式。
+
+```text
+item {
+  id: 1
+  name: 'apple'
+｝
+item {
+  id: 2
+  name: 'banana'
+}
+item {
+  id: 3 name:
+  name'orange'
+｝
+item {
+  id: 4
+  name: 'etc'
+｝
+```
 
 label map 文件将类别 ID 对应到名称：
 
@@ -169,51 +199,56 @@ item {
 
 ---
 
-## 七、Creating a training configuration
+## 七、 Creating a training configuration
+我们将在Google Colab中训练我们的模型。
 
-我们在 Google Colab 中训练模型，
-此处使用 `SSD_MOBILENET_V2`，batch size 为 4。
-可调整训练步数与预训练模型。
+I am using "SSD_MOBILENET_V2" for training and with the batch size of 4.
+
+You can change the number of steps, which pre-trained model? to use & the batch and size.
+
+然后，您需要运行以下单元格。将有一个Upload TF Record提示。
+
+在此之下，您需要上传生成的
+
+  1. train.record
+  
+  2. test.record
+  
+  3. object-detection.pbtxt
 
 ---
 
 ## 八、Training model
-
-上传生成的 `train.record`、`test.record`、`object-detection.pbtxt` 文件后，
-运行训练单元格开始训练。
+现在，在上传所有这些文件之后，运行下面的所有单元格。它将得到训练
 
 ![訓練過程(1)](results/8_1.png)
 ![訓練過程(2)](results/8_2.png)
 
 ---
 
-## 九、Exporting inference graph
+## 九、Exporting inference • graph
 
-训练完成后导出 `frozen_inference_graph.pb` 文件，
-用于模型推论阶段。
+如果已运行所有单元，则最后将下载一个名为Frozen_inference_graph.pb的文件。
 
 ---
 
 ## 十、Testing Object Detector
-
-将 `frozen_inference_graph.pb` 放入测试文件夹中，
-执行 `webcam_inference.py` 测试模型。
+现在，将Frozen_inference_graph.pb文件复制到我的GitHub克隆文件夹中。然后，您需要在该webcam_inference.py中进行一些编辑，以测试您自己的对象检测器。打开该文件并检查代码。
+如果您正确执行了上述所有步骤，则可以通过网络摄像头测试模型。
 
 ![測試結果示意](results/9.png)
 
 ---
 
-## 十一、Conclusion
-
-TensorFlow 对象检测 API 允许使用迁移学习创建自定义对象检测器。
-此流程已成功实作出对苹果物体的识别与定位。
-
----
-
-## 参考文献与链接
-
-* [TensorFlow Models 官方库](https://github.com/tensorflow/models/tree/master/research/object_detection)
-* [TensorFlow 图形检测原文参考 (CSDN)](https://blog.csdn.net/weixin_39884078/article/details/110385105)
-* [Medium 教程 - TensorFlow Object Detection](https://medium.com/@WuStangDan/step-by-step-tensorflow-object-detection-api-tutorial-part-1-selecting-a-model-a02b6aabe39e)
-* [Towards Data Science 教学文](https://towardsdatascience.com/creating-your-own-object-detector-ad69dda69c85)
-* [PythonProgramming.net 教学](https://pythonprogramming.net/introduction-use-tensorflow-object-detection-api-tutorial/)
+## 十一、 Conclusion
+Tensorflow对象检测API允许您使用转移学习技术创建自己的对象检测器。
+代码链接：
+https://github.com/zjgulai/Tensorflow-Object-Detection-API-With-Custom-Datasetgithub.com
+## 参考文献和链接：
+1. https://github.com/tensorflow/models/tree/master/research/object_detection
+2. https://medium.com/@WuStangDan/step-by-step-tensorflow-object-detection-api-tutorial-part-1-selecting-a-model-
+a02b6aabe39e
+3. https://pythonprogramming.net/introduction-use-tensorflow-object-detection-api-tutorial/
+4. https://towardsdatascience.com/creating-your-own-object-detector-ad69dda69c85
+https://medium.com/analytics-vidhya/custom-object-detection-with-tensorflow-using-google-colab-7cbc484f83d7
+http://weixin.qq.com/r/5TaGnkTEZhkZrQD992-3（二维码自动识别）
