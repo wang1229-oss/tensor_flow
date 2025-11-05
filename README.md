@@ -88,6 +88,9 @@ TensorFlow 对象检测 API 使用 Protobuf 配置模型与训练参数。
 ![人](results/人.jpeg)
 
 两个脚本。即xml_to_csv.py和generate_tfrecord.py文件。
+```text
+! git clone https://github.com/zjgulai/Tensorflow-0bject-Detection-API-With-Custom-Dataset.git
+```
 
 ![生成 TFRecord 流程](results/6.png)
 
