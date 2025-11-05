@@ -51,7 +51,7 @@ TensorFlow 对象检测 API 使用 Protobuf 配置模型与训练参数。
 ![Protobuf 編譯過程](results/3.png)
 
 ---
-
+![colab](results/colab.jpeg)
 ## 二、Gathering data
 
 2.1 打开 Google Chrome 并安装「Download All Images」扩展程序。
