@@ -85,6 +85,9 @@ TensorFlow 对象检测 API 使用 Protobuf 配置模型与训练参数。
 在标记了图像的情况下，我们需要创建TFRecords用作输入数据以训练对象检测器。
 为了创建TFRecords，我们将使用
 
+![人](results/人.jpeg)
+两个脚本。即xml_to_csv.py和generate_tfrecord.py文件。
+
 ![生成 TFRecord 流程](results/6.png)
 
 ---
