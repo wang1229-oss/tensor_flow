@@ -97,22 +97,19 @@ TensorFlow 对象检测 API 使用 Protobuf 配置模型与训练参数。
 目錄：
 
 ```text
-data images
-• train
-test
-image1.jpg
-imagel.xml.
-8
-9
-10
-11
-12
-13
-14
-image5. jpg
-— image5.xml ..
-generate_tfrecord.py object-detection.pbtxt transform_image_resolution.py xmL_csv.py
-webcam_inference.py
+-data
+-images
+  -train
+    -image1.jpg
+    -imagel.xml.  
+-test
+  -image5.jpg
+  -image5.xml.
+-generate_threcord.py
+-object-detection.pbtxt
+-transform_image_resolution.py
+-xmL_csv.py
+-webcam_inference.py
 ```
 
 ---
