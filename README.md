@@ -16,52 +16,48 @@
 
 ---
 
-## 二、建立必要資料夾與下載腳本
+## 二、Gathering data
 
-建立 `images/train`, `images/test`, `annotations` 等資料夾，並下載 XML 轉換與 TFRecord 產生腳本。
+本次專案以「蘋果辨識」為主題，資料蒐集自 Google Images。
+使用「Download All Images」外掛批次下載圖片，並手動挑選品質較佳的樣本。
 
-![建立資料夾與下載腳本](results/2.png)
-![執行下載結果](results/3.png)
-
----
-
-## 三、建立 Label Map 檔案
-
-建立 `object-detection.pbtxt` 或 `label_map.pbtxt` 作為標籤定義。
-
-![Label map 建立成功](results/4.png)
+![下載圖片示意](results/蘋果.jpeg)
 
 ---
 
-## 四、XML → CSV 轉換
+## 三、Labeling data
 
-將標註檔案（Pascal VOC XML）轉換為 CSV 格式，產生訓練與測試集標籤。
+使用 `LabelImg` 進行圖片標註，為每張蘋果圖片框出目標範圍並生成對應的 `.xml` 標籤檔。
+人工標註作業由組員完成如下：
 
-![執行 xml\_to\_csv.py](results/5.png)
-![轉換結果顯示](results/6.png)
-
----
-
-## 五、產生 TFRecord
-
-使用 `generate_tfrecord.py` 產生 `train.record` 與 `test.record` 檔案。
-
-![generate\_tfrecord.py 程式碼](results/7.png)
-![執行 TFRecord 產生程式 (1)](results/8_1.png)
-![執行 TFRecord 產生程式 (2)](results/8_2.png)
+![標註者示意](results/人.jpeg)
 
 ---
 
-## 六、最終檔案確認
+## 四、Generating TFRecords for training
 
-最終輸出包含：
+標註完成後，將資料依比例分為 `train` 與 `test` 兩個資料夾。
+執行 `xml_to_csv.py` 將標籤轉換為 `train_labels.csv` 與 `test_labels.csv`，再使用 `generate_tfrecord.py` 產生 `train.record` 與 `test.record`。
 
-* `/content/annotations/train_labels.csv`
-* `/content/annotations/test_labels.csv`
-* `/content/train.record`
-* `/content/test.record`
+專案結構如下：
 
-![最終執行成果](results/9.png)
+![資料結構](results/content.png)
+
+---
+
+## 五、Training model
+
+於 Google Colab 執行 TensorFlow Object Detection API 的訓練腳本。
+設定批次大小 (batch size)、學習率等參數後進行訓練。
+
+---
+
+## 六、Testing Object Detector
+
+模型訓練完成後匯出 `frozen_inference_graph.pb`，再於本地端測試。
+偵測結果如下圖所示，可正確辨識輸入影像中的物件：
+
+![偵測成果示意](results/洋芋片.jpeg)
 
 ---
 
@@ -75,7 +71,5 @@
 
 ## 八、參考來源
 
-* 課堂指定網站：[https://www.cnblogs.com/huiwei13/p/11797142.html](https://www.cnblogs.com/huiwei13/p/11797142.html)
-* 參考程式碼：[https://github.com/kevin945290/AI_report](https://github.com/kevin945290/AI_report)
-
-> 本報告僅作為課堂期中作業使用，所有截圖為本人實際執行成果。
+* [Tensorflow图形检测_使用Google Colab使用Tensorflow进行自定义对象检测](https://blog.csdn.net/weixin_39884078/article/details/110385105)
+* [原始程式參考來源](https://github.com/kevin945290/AI_report)
