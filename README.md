@@ -3,7 +3,8 @@
 ## 11124132吳秉育
 ## 11124138李奕陞
 ## 11124113王威勝
-发布于 2020-11-12
+ipynb程式碼：
+https://colab.research.google.com/drive/119ZVVNVD5N3PriyhyGMn8rSAE5N91rj9?usp=drive_link
 
 ![偵測成果示意](results/洋芋片.jpeg)
 
