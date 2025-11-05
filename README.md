@@ -1,75 +1,127 @@
-# tensor_flow
-南華大學人工智慧期中作業－TensorFlow 環境建置與物件偵測
-
 # 南華大學人工智慧期中作業：TensorFlow 物件偵測實作
 
-本專案依照課堂範例與指定網站內容進行 TensorFlow Object Detection API 的實作。
-**所有圖片均為我們實際在 Google Colab 執行所截取的成果畫面。**
+本專案依據課堂指定文章「使用 Google Colab 使用 TensorFlow 進行自定義物件偵測」製作，
+並以我們實際執行的程式與截圖替換原文中的範例圖片與程式碼。
 
 ---
 
-## 一、環境建置與安裝
+## Tensorflow Object Detection – Using Google Colab to Train a Custom Detector
 
-首先在 Colab 安裝 TensorFlow 及相關依賴，並下載官方 Models 專案。
-
-![環境建置](results/1.png)
-
----
-
-## 二、Gathering data
-
-本次專案以「蘋果辨識」為主題，資料蒐集自 Google Images。
-使用「Download All Images」外掛批次下載圖片，並手動挑選品質較佳的樣本。
-
-![下載圖片示意](results/蘋果.jpeg)
+This article introduces how to use the TensorFlow Object Detection API to create a custom object detector.
+Detailed steps include installation setup, data collection, image labeling, generating TFRecords, and training/testing configurations.
 
 ---
 
-## 三、Labeling data
+## 1. Installation
 
-使用 `LabelImg` 進行圖片標註，為每張蘋果圖片框出目標範圍並生成對應的 `.xml` 標籤檔。
-人工標註作業由組員完成如下：
+Python 3.6 or higher
+Ubuntu 18.04 / Google Colab
+TensorFlow / TensorFlow-gpu
 
-![標註者示意](results/人.jpeg)
+Clone the TensorFlow models repository and set up the environment.
 
----
-
-## 四、Generating TFRecords for training
-
-標註完成後，將資料依比例分為 `train` 與 `test` 兩個資料夾。
-執行 `xml_to_csv.py` 將標籤轉換為 `train_labels.csv` 與 `test_labels.csv`，再使用 `generate_tfrecord.py` 產生 `train.record` 與 `test.record`。
-
-專案結構如下：
-
-![資料結構](results/content.png)
+![](results/1.png)
 
 ---
 
-## 五、Training model
+## 2. Gathering Data
 
-於 Google Colab 執行 TensorFlow Object Detection API 的訓練腳本。
-設定批次大小 (batch size)、學習率等參數後進行訓練。
+Open your Google Chrome browser and install the extension **Download All Images**.
+Search for your target object images (e.g., “Apple”) and download them.
 
----
-
-## 六、Testing Object Detector
-
-模型訓練完成後匯出 `frozen_inference_graph.pb`，再於本地端測試。
-偵測結果如下圖所示，可正確辨識輸入影像中的物件：
-
-![偵測成果示意](results/洋芋片.jpeg)
+![](results/2.png)
+![](results/3.png)
 
 ---
 
-## 七、環境資訊
+## 3. Labeling Data
 
-* 執行平台：Google Colab (Python 3.12)
-* TensorFlow 版本：2.19.1
-* 套件：opencv-python, pillow, lxml, Cython, tf_slim, matplotlib, protobuf, pandas
+Use **LabelImg** to annotate your images.
+This tool generates XML files containing object coordinates and labels for each image.
+
+![](results/4.png)
 
 ---
 
-## 八、參考來源
+## 4. Generating TFRecords for Training
 
-* [Tensorflow图形检测_使用Google Colab使用Tensorflow进行自定义对象检测](https://blog.csdn.net/weixin_39884078/article/details/110385105)
-* [原始程式參考來源](https://github.com/kevin945290/AI_report)
+Split your dataset: 70% for training and 30% for testing.
+We use two scripts: `xml_to_csv.py` and `generate_tfrecord.py`.
+
+Convert XML files to CSV, then to TFRecord files.
+
+![](results/5.png)
+![](results/6.png)
+
+---
+
+## 5. Creating TFRecord Files
+
+After generating CSVs, run the TFRecord generation scripts.
+
+![](results/7.png)
+![](results/8_1.png)
+![](results/8_2.png)
+
+---
+
+## 6. Verifying Dataset Files
+
+Check your directory to confirm these files exist:
+
+* `train_labels.csv`
+* `test_labels.csv`
+* `train.record`
+* `test.record`
+
+![](results/9.png)
+
+---
+
+## 7. Configuring Training
+
+Before training, create:
+
+* **Label map file** (`object-detection.pbtxt`)
+* **Training configuration file**
+
+Each class ID in the label map must match the IDs in `generate_tfrecord.py`.
+
+---
+
+## 8. Training Model
+
+Use Google Colab to train your model with **SSD_MOBILENET_V2** or another pre-trained model.
+You may adjust steps, batch size, and pretrained weights according to your dataset.
+
+---
+
+## 9. Exporting Inference Graph
+
+After training, export `frozen_inference_graph.pb`.
+This file contains your trained model and can be used for inference or webcam testing.
+
+---
+
+## 10. Testing Object Detector
+
+Copy the exported graph to your working directory, modify `webcam_inference.py`, and test detection on your own dataset.
+If all steps were followed correctly, the detector should successfully recognize your custom object.
+
+---
+
+## 11. Conclusion
+
+The TensorFlow Object Detection API allows you to build your own detector easily using transfer learning.
+Our implementation replaces all code blocks and structure screenshots from the tutorial with our **actual execution results** from Google Colab.
+
+---
+
+## References
+
+* Original tutorial: [CSDN Blog – 使用 Google Colab 使用 Tensorflow 进行自定义对象检测](https://blog.csdn.net/weixin_39884078/article/details/110385105)
+* Reference code: [kevin945290/AI_report](https://github.com/kevin945290/AI_report)
+* TensorFlow Models: [https://github.com/tensorflow/models](https://github.com/tensorflow/models)
+
+> 本報告僅作為南華大學人工智慧課程之期中作業使用，
+> 所有程式碼與截圖皆為我們組在 Google Colab 實際執行所得結果。
