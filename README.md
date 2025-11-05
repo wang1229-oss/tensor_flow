@@ -64,14 +64,19 @@ TensorFlow 对象检测 API 使用 Protobuf 配置模型与训练参数。
 
 ---
 
-## 三、Labeling data
+## 三、 Labeling data 
 
-打开终端并安装 LabelImg，这是一个图形图像注释工具。
-安装完成后打开程序，为每张图片标注目标范围并生成对应 XML 文件。
+打开您的终端并通过以下方式安装LabelImg LabelImg是图形图像注释工具。 
+安装labelImg后，通过键入将其打开
 
 ![標註資料示意](results/5.png)
 
+在不同的环境中安装labelImag方法不同，可以参照如下：
+![蘋果](results/蘋果1.jpeg)
+
 我标记了约 100 张图片。
+现在克隆我的存储库
+
 
 ---
 
