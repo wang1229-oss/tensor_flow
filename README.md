@@ -7,14 +7,15 @@ tensorflow图形检测_使用Google Colab使用Tensorflow进行自定义对象�
 
 步骤：
 
-Installation
-Gathering data
-Labeling data
-Generating TFRecords for training
-Configuring training
-Training model
-Exporting inference graph
-Testing object detector
+1.Installation
+2.Gathering data
+3.Labeling data
+4.Generating TFRecords for training
+5.Configuring training
+6.Training model
+7.Exporting inference graph
+8.Testing object detector
+
 一、Installation
 Python 3.6或更高版本。
 Ubuntu 18.04/google colab
