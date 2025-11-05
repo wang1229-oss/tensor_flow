@@ -80,11 +80,10 @@ TensorFlow 对象检测 API 使用 Protobuf 配置模型与训练参数。
 
 ---
 
-## 四、Generating TFRecords for training
-
-将图像文件的 70% 放入 `images/train`，其余 30% 放入 `images/test`。
-执行 `xml_to_csv.py` 生成 `train_labels.csv` 与 `test_labels.csv`，
-接着使用 `generate_tfrecord.py` 生成 `train.record` 与 `test.record`。
+四、Generating TFRecords for training 
+现在，将图像文件的70％复制到训练文件夹图像/训练中，其余30％复制到测试文件夹中。 
+在标记了图像的情况下，我们需要创建TFRecords用作输入数据以训练对象检测器。
+为了创建TFRecords，我们将使用
 
 ![生成 TFRecord 流程](results/6.png)
 
