@@ -112,13 +112,47 @@ TensorFlow 对象检测 API 使用 Protobuf 配置模型与训练参数。
 -webcam_inference.py
 ```
 
+现在在该文件夹中，我们可以通过打开命令行并键入以下内容，将XML文件转换为train_label.csv和test_label.csv：
+```text
+!python xml_to_csv.py
+```
+它们在数据目录中创建两个文件。一个叫做test_labels.csv，另一个叫做train_labels.csv。
+
+```text
+# TO-DO replace this with label map, replace with your own classes
+def class_text_to_int (row_label):
+  if row_label = 'apple':
+    return 1
+  else:
+    return 0
+```
+如果你有多类标记
+
+```text
+#TO-DO replace this with label map def class_text_to_int (row_label) :
+  if row_label == 'apple':
+    return 1
+  elif row_label == 'banana':
+    return 2
+  elif row_label == 'orange':
+    return 3
+  else:
+    return None
+```
+现在，您可以通过键入以下内容来生成TFRecords：
+
+```text
+python3 generate_tfrecord.py --csv_input=data/train_labels.csv --output_path=train.record --image_dir=images/train
+python3 generate_tfrecord.py --csv_input=data/test_labels.csv --output_path=test.record --image_dir=images/test
+```
+这两个命令生成一个train.record和一个test.record文件，可用于训练我们的对象检测器。
+
+
 ---
 
-## 五、Configuring training
+## 五、 Configuring training
 
-在训练前需创建 label map 与训练配置文件。
-
-![設定 label map](results/7.png)
+训练之前，我们要做的最后一件事是create a label map and a training configuration file.
 
 ---
 
