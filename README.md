@@ -55,9 +55,12 @@ TensorFlow 对象检测 API 使用 Protobuf 配置模型与训练参数。
 ## 二、Gathering data
 
 2.1 打开 Google Chrome 并安装「Download All Images」扩展程序。
-2.2 搜索目标物（此例为 “Apple”），点击右上角扩展按钮批量下载。
+
 
 ![蒐集資料示意](results/4.png)
+
+2.2 搜索目标物（此例为 “Apple”），点击右上角扩展按钮批量下载。
+![蘋果](results/蘋果.jpeg)
 
 ---
 
