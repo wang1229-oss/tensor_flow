@@ -72,7 +72,7 @@ TensorFlow 对象检测 API 使用 Protobuf 配置模型与训练参数。
 ![標註資料示意](results/5.png)
 
 在不同的环境中安装labelImag方法不同，可以参照如下：
-![蘋果](results/蘋果1.jpeg)
+![蘋果](results/蘋一.jpeg)
 
 我标记了约 100 张图片。
 现在克隆我的存储库
